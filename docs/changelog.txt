@@ -1,34 +1,68 @@
-========================================
- 2011/11/08 03:50:00 Version 1.20 STABLE
-========================================
+<h5>2.xx Beta 1  [NOT RELEASED]</h5>
+<hr>
+- XOOPS 2.5.9, PHP 7 (mamba)
+- Converted to XOOPS 2.5.8 Admin GUI (mamba)
+- removed @version (mamba)
+- PSR-2 code cosmetics (mamba)
+- addNavigation(basename(__FILE__))  (mamba)
+- dirname(__FILE__) to __DIR__ (mamba)
+- replaced < br /> with < br > (mamba)
+- Unnecessary double quotes (mamba)
+- reference mismatch (mamba)
+- Hardening to type safe (mamba)
+- update Help (mamba)
+- changed _handler to Handler (mamba)
+- removed '/' from void HTML elements (&lt;br&gt;, &lt;img&gt;, etc) (mamba)
+- HTML 5: removed 'selected' and 'checked' (mamba)
+- updated file headers for consistency (mamba)
+- renamed several $indexAdmin with $adminObject for consistency (mamba)
+- Updates for PayPal changes (zyspec)
+- added Contributing.md (mamba)
+- moved functions to Utility class (mamba)
+- include_once to require_once (mamba)
+- php-cs-fixer updates (mamba)
+- started conversion to XMF (mamba)
+    &nbsp;&nbsp;- updated addInfoBoxLine entries (mamba)
+    &nbsp;&nbsp;- displayNavigation(basename(__FILE__))  (mamba)
+    &nbsp;&nbsp;- changed to ->displayButton('left') (mamba)
+
+
+<h5>1.21 Beta 1       [2014-04-23]</h5>
+<hr>
+- moved all images, CSS, and JS files to /assets (mamba)
+- renamed .html Smarty templates to .tpl (mamba)
+
+
+<h5>1.20 STABLE   [2011/11/08]</h5>
+<hr>
  - Changed $pathImageAdmin renamed to $GLOBALS['xtransamImageAdmin']  (Wishcraft)
  - Changed $GLOBALS['xoopsModule'] in module renamed to $GLOBALS['xtransamModule'] (Wishcraft)
  - Changed $GLOBALS['xoopsModuleConfig'] in module renamed to $GLOBALS['xtransamModuleConfig'] (Wishcraft)
  - Changed timgo ansi converterter line 91 and 151-152 remmed out admin/index.php  (Wishcraft)
- 
-========================================
- 2011/11/03 07:20:00 Version 1.19 STABLE
-========================================
+
+
+<h5>1.19 STABLE   [2011/11/03]</h5>
+<hr>
  - Changed Field Refeerer in forms for Provider Checkboxes form.php  (Wishcraft)
  - Changed Field Refeerer in language save routines in admin/index.php  (Wishcraft)
  - Changed Path for XOOPS Microbutton in admin_footer.php  (Wishcraft)
- 
-========================================
- 2011/11/03 07:20:00 Version 1.18 STABLE
-========================================
+
+
+<h5>1.18 STABLE   [2011/11/03]</h5>
+<hr>
  - Added Bing Translation Provider bing.php  (Wishcraft)
  - Added Bing Application ID Preference xoops_version.php  (Wishcraft)
  - Changed Bing Provider added to preference xoops_version.php  (Wishcraft)
 
-========================================
- 2011/10/27 20:01:00 Version 1.16 STABLE
-========================================
+
+<h5>1.16 STABLE   [2011/10/27]</h5>
+<hr>
  - Changed Added Array Element 0 to Google Provider for Output google.php  (Wishcraft)
  - Changed Changed Array Element for Error Function of Google Provider function.php  (Wishcraft)
- 
-========================================
- 2011/10/26 23:40:00 Version 1.15 STABLE
-========================================
+
+
+<h5>1.15 STABLE   [2011/10/26]</h5>
+<hr>
  - Changed Added Function Exists to all functions in function.php  (Wishcraft)
  - Changed Renamed Admin Menu and Admin Menu Footer Function in function.php  (Wishcraft)
  - Changed Refactorise Provider Routines to be on inclusive of essential routines (wishcraft)
@@ -39,19 +73,19 @@
  - Changed Copying index.html into all folders recursively index.php (wishcraft)
  - Changed File Footer to include translators email address and version of software index.php (wishcraft)
  - Added More informative InfoBox on Dashboard index.php (wishcraft)
- 
-====================================
- 2011/10/26 5:26:00 Version 1.14 RC
-====================================
+
+
+<h5>1.14 RC   [2011/10/26]</h5>
+<hr>
  - Changed All Errors Removed from Debug  (Wishcraft)
  - Changed Language Providers Array was defined in class and upgrade (wishcraft)
  - Changed Google Sub Provider class for new v2 of API  (Wishcraft)
  - Changed Support for Google Error Codes Added to Google Provider (Wishcraft)
  - Changed $GLOBAL changed to $GLOBALS  (wishcraft)
- 
-====================================
- 2011/10/26 10:31:00 Version 1.13 Beta
-====================================
+
+
+<h5>1.13 Beta [2011/10/26]</h5>
+<hr>
  - Clean Clean up variable names and language loading constants  (Wishcraft)
  - Added Created provider class  (wishcraft)
  - Changed Google Sub Provider class for new v2 of API  (Wishcraft)
@@ -60,15 +94,15 @@
  - Added Pre PHP 5.2 JSON Compatibility  (wishcraft)
  - Added Google Langauge File  (wishcraft)
 
-====================================
- 2011/08/30 22:13:55 Version 1.12
-====================================
+
+<h5>1.12  [2011/08/30]</h5>
+<hr>
  - Added GUI Admin for Xoops 2.5.x  (Timgno)
  - Added Icons in Frameworks forder  (Timgno)
  - Added admin/about.php file  (Timgno)
  - Added language/mylang/help folder  (Timgno)
 
-====================================
- 2011/08/13 22:13:55 Version 1.11
-====================================
+
+<h5>1.11  [2011/08/13]</h5>
+<hr>
  - Original release xtransam (Wishcraft)

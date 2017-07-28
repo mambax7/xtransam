@@ -1,101 +1,91 @@
 <?php
-// $Autho: wishcraft $
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2009 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  --  Author: Simon Roberts (simon@chronolabs.org.au)                   -- //
-//  ------------------------------------------------------------------------ //
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-include_once(dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.'mainfile.php');
-include_once(dirname(dirname(dirname(dirname(__FILE__)))).DS.'include'.DS.'cp_header.php');
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Simon Roberts (simon@chronolabs.org.au)
+ */
 
-if (!defined('_CHARSET'))
-	define("_CHARSET","UTF-8");
-if (!defined('_CHARSET_ISO'))
-	define("_CHARSET_ISO","ISO-8859-1");
-	
+require_once __DIR__ . '/../../../include/cp_header.php';
+//require_once $GLOBALS['xoops']->path('www/class/xoopsformloader.php');
+
+//require_once __DIR__ . '/../class/utility.php';
+//require_once __DIR__ . '/../include/common.php';
+
+$moduleDirName = basename(dirname(__DIR__));
+
+if (!defined('_CHARSET')) {
+    define('_CHARSET', 'UTF-8');
+}
+if (!defined('_CHARSET_ISO')) {
+    define('_CHARSET_ISO', 'ISO-8859-1');
+}
+
 $GLOBALS['myts'] = MyTextSanitizer::getInstance();
 
-$module_handler = xoops_gethandler('module');
-$config_handler = xoops_gethandler('config');
-$GLOBALS['xtransamModule'] = $module_handler->getByDirname('xtransam');
-$GLOBALS['xtransamModuleConfig'] = $config_handler->getConfigList($GLOBALS['xtransamModule']->getVar('mid')); 
+/** @var XoopsModuleHandler $moduleHandler */
+$moduleHandler                   = xoops_getHandler('module');
+$configHandler                   = xoops_getHandler('config');
+$GLOBALS['xtransamModule']       = $moduleHandler->getByDirname('xtransam');
+$GLOBALS['xtransamModuleConfig'] = $configHandler->getConfigList($GLOBALS['xtransamModule']->getVar('mid'));
 
 set_time_limit($GLOBALS['xtransamModuleConfig']['php_execute_for']);
 
-xoops_load('pagenav');	
+xoops_load('pagenav');
 xoops_load('xoopslists');
 xoops_load('xoopsformloader');
 
-include_once $GLOBALS['xoops']->path('class'.DS.'xoopsmailer.php');
-include_once $GLOBALS['xoops']->path('class'.DS.'xoopstree.php');
-include_once $GLOBALS['xoops']->path('modules'.DS.'xtransam'.DS.'include'.DS.'functions.php');
-include_once $GLOBALS['xoops']->path('modules'.DS.'xtransam'.DS.'include'.DS.'forms.php');
+require_once $GLOBALS['xoops']->path('class/xoopsmailer.php');
+require_once $GLOBALS['xoops']->path('class/xoopstree.php');
+require_once $GLOBALS['xoops']->path('modules/xtransam/include/functions.php');
+require_once $GLOBALS['xoops']->path('modules/xtransam/include/forms.php');
 
-if ( file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))){
-        include_once $GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php');
-        //return true;
-    }else{
-        echo xoops_error("Error: You don't use the Frameworks \"admin module\". Please install this Frameworks");
-        //return false;
-    }
-$pathImageIcon = XOOPS_URL .'/'. $GLOBALS['xtransamModule']->getInfo('icons16');
-$pathImageAdmin = XOOPS_URL .'/'. $GLOBALS['xtransamModule']->getInfo('icons32');
+$pathImageIcon        = XOOPS_URL . '/' . $GLOBALS['xtransamModule']->getInfo('icons16');
+$pathImageAdmin       = XOOPS_URL . '/' . $GLOBALS['xtransamModule']->getInfo('icons32');
+$xoopsModuleAdminPath = $GLOBALS['xoops']->path('www/' . $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin'));
+require_once "{$xoopsModuleAdminPath}/moduleadmin.php";
 
 $myts = MyTextSanitizer::getInstance();
 
 if ($xoopsUser) {
-    $moduleperm_handler =& xoops_gethandler('groupperm');
-    if (!$moduleperm_handler->checkRight('module_admin', $GLOBALS['xtransamModule']->getVar( 'mid' ), $xoopsUser->getGroups())) {
+    $modulepermHandler = xoops_getHandler('groupperm');
+    if (!$modulepermHandler->checkRight('module_admin', $GLOBALS['xtransamModule']->getVar('mid'), $xoopsUser->getGroups())) {
         redirect_header(XOOPS_URL, 1, _NOPERM);
-        exit();
     }
 } else {
-    redirect_header(XOOPS_URL . "/user.php", 1, _NOPERM);
-    exit();
+    redirect_header(XOOPS_URL . '/user.php', 1, _NOPERM);
 }
 
 if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
-	include_once(XOOPS_ROOT_PATH."/class/template.php");
-	$xoopsTpl = new XoopsTpl();
+    require_once XOOPS_ROOT_PATH . '/class/template.php';
+    $xoopsTpl = new XoopsTpl();
 }
 
 $xoopsTpl->assign('pathImageIcon', $pathImageIcon);
 //xoops_cp_header();
 
-$traslactionsHandler =& xoops_getModuleHandler('iobase', 'xtransam');
+$traslactionsHandler = xoops_getModuleHandler('iobase', 'xtransam');
 
 if (isset($_GET)) {
     foreach ($_GET as $k => $v) {
-	    ${$k} = $v;
+        ${$k} = $v;
     }
 }
 
 if (isset($_POST)) {
     foreach ($_POST as $k => $v) {
-	    ${$k} = $v;
+        ${$k} = $v;
     }
 }
-
-?>

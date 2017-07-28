@@ -9,15 +9,14 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright	XOOPS Project (https://xoops.org)
+ * @copyright           XOOPS Project (https://xoops.org)
  * @license             http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package	XoopsPoll
- * @since		2.5.0
- * @author 	Mamba (www.xoops.org)
- * @version	$Id $
-**/
-    
-echo "<div align=\"center\"><a href=\"http://www.xoops.org\" target=\"_blank\"><img src=" . XOOPS_URL .'/' . $GLOBALS['xtransamImageAdmin'].'/xoopsmicrobutton.gif'.' '." alt='XOOPS' title='XOOPS'></a></div>";
-echo "<div class='center smallsmall italic pad5'><strong>" . $GLOBALS['xtransamModule']->getVar("name") . "</strong> is maintained by the <a class='tooltip' rel='external' href='http://www.xoops.org/' title='Visit XOOPS Community'>XOOPS Community</a></div>";
+ * @package             XoopsPoll
+ * @since               2.5.0
+ * @author              Mamba (www.xoops.org)
+ **/
+
+echo "<div align=\"center\"><a href=\"https://xoops.org\" target=\"_blank\"><img src=" . XOOPS_URL . '/' . $GLOBALS['xtransamImageAdmin'] . '/xoopsmicrobutton.gif' . ' ' . " alt='XOOPS' title='XOOPS'></a></div>";
+echo "<div class='center smallsmall italic pad5'><strong>" . $GLOBALS['xtransamModule']->getVar('name') . "</strong> is maintained by the <a class='tooltip' rel='external' href='https://xoops.org/' title='Visit XOOPS Community'>XOOPS Community</a></div>";
 
 xoops_cp_footer();

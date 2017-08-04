@@ -320,7 +320,7 @@ class Services_JSON
                             break;
 
                         case (($ord_var_c & 0xE0) == 0xC0):
-                            // characters U-00000080 - U-000007FF, mask 110XXXXX
+                            // characters U-00000080 - U-000007FF, mask 110XTRANSAM
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                             $char  = pack('C*', $ord_var_c, ord($var{$c + 1}));
                             $c     += 1;
@@ -570,7 +570,7 @@ class Services_JSON
                                 break;
 
                             case ($ord_chrs_c & 0xE0) == 0xC0:
-                                // characters U-00000080 - U-000007FF, mask 110XXXXX
+                                // characters U-00000080 - U-000007FF, mask 110XTRANSAM
                                 //see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                                 $utf8 .= substr($chrs, $c, 2);
                                 ++$c;

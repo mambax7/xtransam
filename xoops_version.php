@@ -76,6 +76,14 @@ $modversion['tables'][1] = 'xtransam_iobase';
 $modversion['tables'][2] = 'xtransam_languages';
 $modversion['tables'][3] = 'xtransam_translator';
 
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = array(
+    ['name' => _MI_XTRANSAM_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_XTRANSAM_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_XTRANSAM_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_XTRANSAM_SUPPORT, 'link' => 'page=support'],
+);
+
 // Menu
 $modversion['hasMain']                   = 0;
 $i                                       = 0;

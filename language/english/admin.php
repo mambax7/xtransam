@@ -56,7 +56,7 @@ define('_AM_XTRANSAM_ANLYSISCOMPLETE', 'File base analysis completed succsssfull
 define('_AM_XTRANSAM_TRANSLATIONEDITOR', 'Edit translation from %s to %s');
 define('_AM_XTRANSAM_SELECTFILETOEDIT', 'Select file in translation');
 define('_AM_XTRANSAM_SAVECOMPLETE', 'Saving of translation page finished!');
-define('_AM_XTRANSAM_TRANSLATION_IN_PROCESS', '<center><font style="font-size:2.5em;">Translation In Progress</font><b><b>It will be approximately %s Seconds of Execution!<b><b> This is timer startup number %u<b>The process will be finished soon!<b><b></center>');
+define('_AM_XTRANSAM_TRANSLATION_IN_PROCESS', '<div class="center;"><font style="font-size:2.5em;">Translation In Progress</font><b><b>It will be approximately %s Seconds of Execution!<b><b> This is timer startup number %u<b>The process will be finished soon!<b><b></div>');
 define('_AM_XTRANSAM_ADMIN_NUMTRASL', 'Translation Projects Details');
 define('_AM_XTRANSAM_THEREARE_NUMFILES', 'Number of files in database: %s');
 define('_AM_XTRANSAM_THEREARE_NUMLINES', 'Number of lines imported into database: %s');
@@ -65,3 +65,12 @@ define('_AM_XTRANSAM_THEREARE_NUMLANG', 'Number of languages: %s');
 define('_AM_XTRANSAM_THEREARE_GOOGLEAVAILABLE', 'Google Limits in Affect: %s');
 define('_AM_XTRANSAM_THEREARE_GOOGLEERROR', 'Google Error: %s - %s');
 define('_AM_XTRANSAM_EXPORTCOMPLETE', 'Export of File Base Completed Successfully.');
+
+//1.21
+define('_AM_XTRANSAM_UPGRADEFAILED0', "Update failed - couldn't rename field '%s'");
+define('_AM_XTRANSAM_UPGRADEFAILED1', "Update failed - couldn't add new fields");
+define('_AM_XTRANSAM_UPGRADEFAILED2', "Update failed - couldn't rename table '%s'");
+define('_AM_XTRANSAM_ERROR_COLUMN', 'Could not create column in database : %s');
+define('_AM_XTRANSAM_ERROR_BAD_XOOPS', 'This module requires XOOPS %s+ (%s installed)');
+define('_AM_XTRANSAM_ERROR_BAD_PHP', 'This module requires PHP version %s+ (%s installed)');
+define('_AM_XTRANSAM_ERROR_TAG_REMOVAL', 'Could not remove tags from Tag Module');

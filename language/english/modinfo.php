@@ -60,3 +60,17 @@ define('_MI_XTRANSAM_MICROTIME_DAY_DIFF_DESC', 'This is the number of seconds di
 define('_MI_XTRANSAM_PROVIDER_REST_BING', 'Microsoft Bing API');
 define('_MI_XTRANSAM_BING_APIKEY', 'Your Application ID for Microsoft Bing\'s API');
 define('_MI_XTRANSAM_BING_APIKEY_DESC', 'This is your Application ID for Bing API you can get one from <a href="https://ssl.bing.com/webmaster/Developers/Home?FORM=R5FD2" target="_blank">Application ID Signup</a>');
+
+//1.21
+//Help
+define('_MI_XTRANSAM_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_XTRANSAM_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_XTRANSAM_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_XTRANSAM_OVERVIEW', 'Overview');
+
+//define('_MI_XTRANSAM_HELP_DIR', __DIR__);
+
+//help multi-page
+define('_MI_XTRANSAM_DISCLAIMER', 'Disclaimer');
+define('_MI_XTRANSAM_LICENSE', 'License');
+define('_MI_XTRANSAM_SUPPORT', 'Support');

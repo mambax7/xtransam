@@ -1,11 +1,5 @@
 <div id="help-template" class="outer">
-    <h1 class="head">Help:
-        <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/xtransam/admin/index.php"
-           title="Back to the administration of xtransam"> X-Transam <img src="<{xoAdminIcons home.png}>"
-                                                                          alt="Back to the Administration of xtransam">
-        </a></h1>
-    <!-- -----Help Content ---------- -->
-
+    <{include file=$smarty.const._MI_XTRANSAM_HELP_HEADER}>
     <h4 class="odd">DESCRIPTION</h4>
 
     <p class="even">
@@ -23,5 +17,4 @@
     <p class="even">
         A detailed tutorial coming soon...
 
-        <!-- -----Help Content ---------- -->
 </div>

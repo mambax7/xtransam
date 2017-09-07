@@ -18,7 +18,7 @@
  * @author       Simon Roberts (simon@chronolabs.org.au)
  */
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 require_once $GLOBALS['xoops']->path('modules/xtransam/include/functions.php');
 require_once $GLOBALS['xoops']->path('modules/xtransam/include/provider.php');
@@ -54,13 +54,13 @@ class XtransamMymemoryProvider extends XtransamProviderHandler
     public function send_curl($url, $text, $from, $to, $referer = null)
     {
         $langpair = $from . '|' . $to;
-        $response = xtransam_callAPI($url, array(
+        $response = xtransam_callAPI($url, [
             'langpair' => $langpair,
             'q'        => $text,
             'of'       => 'JSON',
             'de'       => $GLOBALS['xoopsConfig']['adminemail'],
             'ip'       => $_SERVER['REMOTE_ADDR']
-        ), 'GET');
+        ], 'GET');
 
         return $response;
     }

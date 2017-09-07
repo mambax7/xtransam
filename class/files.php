@@ -18,7 +18,7 @@
  * @author       Simon Roberts (simon@chronolabs.org.au)
  */
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 /**
  * Class for policies
@@ -50,7 +50,7 @@ class XtransamFilesHandler extends XoopsPersistableObjectHandler
 {
     public $db;
     public $regex     = '/define\((.*) \);|define  \((.*) \);|define \((.*) \);|define \( ([\"\', \ta-zA-Z0-9_]+)\);|define\( (.*) \);|define\((.*)\);|define  \((.*)\);|define \((.*)\);|define \( ([\"\', \ta-zA-Z0-9_]+)\);|define\( (.*)\);|define\((.*)   \);|define  \((.*)  \);|define \((.*)   \);|define \( (.*)  \);|define\( (.*)   \);/';
-    public $seperator = array(
+    public $seperator = [
         '", "',
         '","',
         '"    ,   "',
@@ -75,7 +75,7 @@ class XtransamFilesHandler extends XoopsPersistableObjectHandler
         '\' , "',
         '\',  "',
         '\' , "'
-    );
+    ];
 
     public function __construct(XoopsDatabase $db)
     {
@@ -104,7 +104,7 @@ class XtransamFilesHandler extends XoopsPersistableObjectHandler
                 if (strpos(' ' . $line, 'define') > 0) {
                     @preg_match_all($this->regex, $line, $matches);
 
-                    $def = array();
+                    $def = [];
                     foreach ($matches as $match) {
                         foreach ($match as $result) {
                             if (!empty($result) && substr($result, 0, 6) !== 'define') {
@@ -180,7 +180,7 @@ class XtransamFilesHandler extends XoopsPersistableObjectHandler
 
     private function dirToArray($directory, $recursive, $fileext = 'php')
     {
-        $array_items = array();
+        $array_items = [];
         if ($handle = opendir($directory)) {
             while (false !== ($file = readdir($handle))) {
                 $filecomp = explode('.', $file);

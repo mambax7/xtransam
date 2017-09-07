@@ -30,7 +30,7 @@ function languagesForm_display()
     $ele_tray[0]->addElement(new XoopsFormText(_AM_XTRANSAM_CODE, 'code[0]', 10, 6));
     $ele_tray[0]->addElement(new XoopsFormText(_AM_XTRANSAM_FOLDER, 'folder[0]', 26, 255));
 
-    $ele_select    = array();
+    $ele_select    = [];
     $ele_select[0] = new XoopsFormCheckbox(_AM_XTRANSAM_PROVIDER, 'providers[0][]');
     $ele_select[0]->addOption('google', _MI_XTRANSAM_PROVIDER_REST_GOOGLE);
     $ele_select[0]->addOption('mymemory', _MI_XTRANSAM_PROVIDER_REST_MYMEMORY);

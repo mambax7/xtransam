@@ -52,10 +52,11 @@ require_once $GLOBALS['xoops']->path('class/xoopstree.php');
 require_once $GLOBALS['xoops']->path('modules/xtransam/include/functions.php');
 require_once $GLOBALS['xoops']->path('modules/xtransam/include/forms.php');
 
-$pathImageIcon        = XOOPS_URL . '/' . $GLOBALS['xtransamModule']->getInfo('icons16');
-$pathImageAdmin       = XOOPS_URL . '/' . $GLOBALS['xtransamModule']->getInfo('icons32');
-$xoopsModuleAdminPath = $GLOBALS['xoops']->path('www/' . $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin'));
-require_once "{$xoopsModuleAdminPath}/moduleadmin.php";
+$pathImageIcon        = Xmf\Module\Admin::iconUrl('', 16);
+$pathImageAdmin       = Xmf\Module\Admin::iconUrl('', 32);
+
+/** @var Xmf\Module\Admin $adminObject */
+$adminObject = Xmf\Module\Admin::getInstance();
 
 $myts = MyTextSanitizer::getInstance();
 

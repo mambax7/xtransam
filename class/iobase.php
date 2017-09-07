@@ -18,7 +18,7 @@
  * @author       Simon Roberts (simon@chronolabs.org.au)
  */
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 /**
  * Class for policies
@@ -113,7 +113,7 @@ class XtransamIobaseHandler extends XoopsPersistableObjectHandler
             // $sql .= " ORDER BY `{$this->handler->keyName}` DESC";
         }
         $result = $this->db->query($sql, $limit, $start);
-        $ret    = array();
+        $ret    = [];
         if ($asObject) {
             while ($myrow = $this->db->fetchArray($result)) {
                 $object =& $this->create(false);

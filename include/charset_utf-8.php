@@ -29,7 +29,7 @@
 // Project: XOOPS Project                                                    //
 // ------------------------------------------------------------------------- //
 
-$GLOBALS['charset_utf8'] = array(
+$GLOBALS['charset_utf8'] = [
     ''    => '&#20;', //Spazio
     '!'    => '&#33;', //Punto esclamativo
     '"'    => '&#34;', //&quot;', //Virgolette
@@ -174,4 +174,4 @@ $GLOBALS['charset_utf8'] = array(
     '%s  ' => '%s ',
     '%s "' => '%s"',
     ' / '  => '/'
-);
+];

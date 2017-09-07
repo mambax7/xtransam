@@ -26,7 +26,7 @@ function xoops_module_update_xtransam(XoopsModule $module)
     $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('xtransam_translator') . ' CHANGE COLUMN `hexval_orginal` `orginal` MEDIUMTEXT');
     $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('xtransam_translator') . ' CHANGE COLUMN `hexval_translation` `translation` MEDIUMTEXT');
     $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('xtransam_languages') . ' CHANGE COLUMN `provider` `providers` VARCHAR(500)');
-    $result = $xoopsDB->queryF('UPDATE ' . $xoopsDB->prefix('xtransam_languages') . " SET `providers` = '" . serialize(array('google', 'mymemory', 'bing')) . "'");
+    $result = $xoopsDB->queryF('UPDATE ' . $xoopsDB->prefix('xtransam_languages') . " SET `providers` = '" . serialize(['google', 'mymemory', 'bing']) . "'");
 
     return true;
 }

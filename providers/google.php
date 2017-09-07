@@ -18,7 +18,7 @@
  * @author       Simon Roberts (simon@chronolabs.org.au)
  */
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 require_once $GLOBALS['xoops']->path('modules/xtransam/include/functions.php');
 require_once $GLOBALS['xoops']->path('modules/xtransam/include/provider.php');
 
@@ -48,7 +48,6 @@ class XtransamGoogleProvider extends XtransamProviderHandler
     {
         if ($message = XoopsCache::read('xtransam_google_pause')) {
             redirect_header(XOOPS_URL . '/modules/xtransam/admin/index.php', 10, sprintf(_GL_XTRANSAM_ERROR, $message['code'], $message['message']));
-            exit;
         }
         if (strlen($value) < (5 * 1024)) {
             $start = microtime(true);
@@ -59,7 +58,6 @@ class XtransamGoogleProvider extends XtransamProviderHandler
                         foreach ($chars['seconds'] as $microseconds => $countb) {
                             if (microtime(true) - $start > $GLOBALS['xoopsModuleConfig']['wait_in_case']) {
                                 redirect_header(XOOPS_URL . '/modules/xtransam/admin/index.php', 10, sprintf(_GL_XTRANSAM_WAIT_TIMED_OUT, $GLOBALS['xoopsModuleConfig']['wait_in_case']));
-                                exit;
                             }
                             if (microtime(true) - $microseconds > (float)$GLOBALS['xoopsModuleConfig']['micro_seconds_diff']
                                 && $chars['seconds_cu'][$microseconds]['last'] - microtime(true) > (float)$GLOBALS['xoopsModuleConfig']['micro_seconds_diff']) {
@@ -86,7 +84,6 @@ class XtransamGoogleProvider extends XtransamProviderHandler
                         foreach ($chars['day'] as $microseconds => $countb) {
                             if (microtime(true) - $start > $GLOBALS['xoopsModuleConfig']['wait_in_case']) {
                                 redirect_header(XOOPS_URL . '/modules/xtransam/admin/index.php', 10, sprintf(_GL_XTRANSAM_WAIT_TIMED_OUT, $GLOBALS['xoopsModuleConfig']['wait_in_case']));
-                                exit;
                             }
                             if (microtime(true) - $microseconds > (float)$GLOBALS['xoopsModuleConfig']['micro_day_diff']
                                 && $chars['day_cu'][$microseconds]['last'] - microtime(true) > (float)$GLOBALS['xoopsModuleConfig']['micro_seconds_diff']) {
@@ -107,12 +104,12 @@ class XtransamGoogleProvider extends XtransamProviderHandler
                     }
                 }
             } else {
-                $chars = array(
-                    'totals' => array(
+                $chars = [
+                    'totals' => [
                         'seconds' => 0,
                         'day'     => 0
-                    )
-                );
+                    ]
+                ];
             }
             $chars['totals']['day']              = $chars['totals']['day'] + strlen($value);
             $chars['totals']['seconds']          = $chars['totals']['seconds'] + strlen($value);
@@ -129,16 +126,16 @@ class XtransamGoogleProvider extends XtransamProviderHandler
             if (count($response['error']['errors']) > 0) {
                 switch ($response['code']) {
                     case 403:
-                        XoopsCache::write('xtransam_google_pause', array(
+                        XoopsCache::write('xtransam_google_pause', [
                             'code'    => $response['error']['code'],
                             'message' => $response['error']['message']
-                        ), 60 * 60 * 24);
+                        ], 60 * 60 * 24);
                         break;
                     default:
-                        XoopsCache::write('xtransam_google_pause', array(
+                        XoopsCache::write('xtransam_google_pause', [
                             'code'    => $response['error']['code'],
                             'message' => $response['error']['message']
-                        ), 60);
+                        ], 60);
                         break;
                 }
 
@@ -151,12 +148,12 @@ class XtransamGoogleProvider extends XtransamProviderHandler
 
     public function send_curl($url, $text, $from, $to, $referer = null)
     {
-        $response = xtransam_callAPI($url, array(
+        $response = xtransam_callAPI($url, [
             'key'    => $GLOBALS['xoopsModuleConfig']['google_api_key'],
             'source' => $from,
             'target' => $to,
             'q'      => $text
-        ), 'GET');
+        ], 'GET');
 
         return $response;
     }

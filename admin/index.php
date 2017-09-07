@@ -84,7 +84,7 @@ switch ($op) {
         //include($GLOBALS['xoops']->path('modules'.DS.'xtransam'.DS.'include'.DS.'charset_utf-8.php'));
 
         foreach ($files as $file) {
-            $path = array();
+            $path = [];
             foreach (explode('\\', $file->getVar('path')) as $nodea) {
                 foreach (explode('/', $nodea) as $nodeb) {
                     $path[] = $nodeb;
@@ -250,18 +250,18 @@ switch ($op) {
         $adminObject = \Xmf\Module\Admin::getInstance();
 
         $adminObject->addInfoBox(_AM_XTRANSAM_ADMIN_NUMTRASL);
-        $adminObject->addInfoBoxLine(_AM_XTRANSAM_ADMIN_NUMTRASL, '<label>' . _AM_XTRANSAM_THEREARE_NUMFILES . '</label>', $filesHandler->getCount(null), 'Green');
-        $adminObject->addInfoBoxLine(_AM_XTRANSAM_ADMIN_NUMTRASL, '<label>' . _AM_XTRANSAM_THEREARE_NUMLINES . '</label>', $transHandler->getCount(null), 'Green');
-        $adminObject->addInfoBoxLine(_AM_XTRANSAM_ADMIN_NUMTRASL, '<label>' . _AM_XTRANSAM_THEREARE_NUMPROJECTS . '</label>', $iobaseHandler->getCount(null), 'Green');
-        $adminObject->addInfoBoxLine(_AM_XTRANSAM_ADMIN_NUMTRASL, '<label>' . _AM_XTRANSAM_THEREARE_NUMLANG . '</label>', $langHandler->getCount(null), 'Green');
+        $adminObject->addInfoBoxLine(sprintf('<label>' . _AM_XTRANSAM_THEREARE_NUMFILES . '</label>', $filesHandler->getCount(null)), '', 'Green');
+        $adminObject->addInfoBoxLine(sprintf('<label>' . _AM_XTRANSAM_THEREARE_NUMLINES . '</label>', $transHandler->getCount(null)), '', 'Green');
+        $adminObject->addInfoBoxLine(sprintf('<label>' . _AM_XTRANSAM_THEREARE_NUMPROJECTS . '</label>', $iobaseHandler->getCount(null)), '', 'Green');
+        $adminObject->addInfoBoxLine(sprintf('<label>' . _AM_XTRANSAM_THEREARE_NUMLANG . '</label>', $langHandler->getCount(null)), '', 'Green');
 
         xoops_load('xoopscache');
 
         if ($googlecodes = XoopsCache::read('xtransam_google_pause')) {
-            $adminObject->addInfoBoxLine(_AM_XTRANSAM_ADMIN_NUMTRASL, '<label>' . _AM_XTRANSAM_THEREARE_GOOGLEAVAILABLE . '</label>', _YES, 'Green');
-            $adminObject->addInfoBoxLine(_AM_XTRANSAM_ADMIN_NUMTRASL, '<label>' . sprintf(_AM_XTRANSAM_THEREARE_GOOGLEERROR, $googlecodes['code'], $googlecodes['message']) . '</label>', '', 'Green');
+            $adminObject->addInfoBoxLine(sprintf('<label>' . _AM_XTRANSAM_THEREARE_GOOGLEAVAILABLE . '</label>', _YES), '', 'Green');
+            $adminObject->addInfoBoxLine(sprintf('<label>' . sprintf(_AM_XTRANSAM_THEREARE_GOOGLEERROR, $googlecodes['code'], $googlecodes['message']) . '</label>', ''), '', 'Green');
         } else {
-            $adminObject->addInfoBoxLine(_AM_XTRANSAM_ADMIN_NUMTRASL, '<label>' . _AM_XTRANSAM_THEREARE_GOOGLEAVAILABLE . '</label>', _NO, 'Green');
+            $adminObject->addInfoBoxLine(sprintf('<label>' . _AM_XTRANSAM_THEREARE_GOOGLEAVAILABLE . '</label>', _NO), '', 'Green');
         }
 
         $adminObject->displayNavigation(basename(__FILE__));

@@ -18,7 +18,7 @@
  * @author       Simon Roberts (simon@chronolabs.org.au)
  */
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 $moduleDirName = basename(__DIR__);
 
@@ -77,12 +77,12 @@ $modversion['tables'][2] = 'xtransam_languages';
 $modversion['tables'][3] = 'xtransam_translator';
 
 // ------------------- Help files ------------------- //
-$modversion['helpsection'] = array(
+$modversion['helpsection'] = [
     ['name' => _MI_XTRANSAM_OVERVIEW, 'link' => 'page=help'],
     ['name' => _MI_XTRANSAM_DISCLAIMER, 'link' => 'page=disclaimer'],
     ['name' => _MI_XTRANSAM_LICENSE, 'link' => 'page=license'],
     ['name' => _MI_XTRANSAM_SUPPORT, 'link' => 'page=support'],
-);
+];
 
 // Menu
 $modversion['hasMain']                   = 0;
@@ -93,13 +93,13 @@ $modversion['config'][$i]['description'] = '_MI_XTRANSAM_STORE_METHOD_DESC';
 $modversion['config'][$i]['formtype']    = 'select';
 $modversion['config'][$i]['valuetype']   = 'text';
 $modversion['config'][$i]['default']     = 'urlcode';
-$modversion['config'][$i]['options']     = array(
+$modversion['config'][$i]['options']     = [
     _MI_XTRANSAM_STORE_METHOD_URLENCODE => 'urlcode',
     _MI_XTRANSAM_STORE_METHOD_UUCODE    => 'uucode',
     _MI_XTRANSAM_STORE_METHOD_BASE64    => 'base64',
     _MI_XTRANSAM_STORE_METHOD_HEX       => 'hex',
     _MI_XTRANSAM_STORE_METHOD_OPEN      => 'open'
-);
+];
 ++$i;
 $modversion['config'][$i]['name']        = 'provider';
 $modversion['config'][$i]['title']       = '_MI_XTRANSAM_PROVIDER';
@@ -107,11 +107,11 @@ $modversion['config'][$i]['description'] = '_MI_XTRANSAM_PROVIDER_DESC';
 $modversion['config'][$i]['formtype']    = 'select';
 $modversion['config'][$i]['valuetype']   = 'text';
 $modversion['config'][$i]['default']     = 'google';
-$modversion['config'][$i]['options']     = array(
+$modversion['config'][$i]['options']     = [
     _MI_XTRANSAM_PROVIDER_REST_GOOGLE   => 'google',
     _MI_XTRANSAM_PROVIDER_REST_MYMEMORY => 'mymemory',
     _MI_XTRANSAM_PROVIDER_REST_BING     => 'bing'
-);
+];
 
 ++$i;
 $modversion['config'][$i]['name']        = 'bing_api_key';

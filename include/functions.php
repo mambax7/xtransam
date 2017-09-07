@@ -50,7 +50,7 @@ if (!function_exists('xtransam_adminMenu')) {
 
         $myts = MyTextSanitizer::getInstance();
 
-        $tblColors = array();
+        $tblColors = [];
         // $adminObject=array();
         if (file_exists(XOOPS_ROOT_PATH . '/modules/' . $xModule->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/modinfo.php')) {
             require_once XOOPS_ROOT_PATH . '/modules/xtransam/language/' . $xoopsConfig['language'] . '/modinfo.php';
@@ -73,7 +73,7 @@ if (!function_exists('xtransam_adminMenu')) {
         echo '</div>';
         echo "<div id='buttonbar'>";
         echo '<ul>';
-        $adminmenu = array();
+        $adminmenu = [];
         include XOOPS_ROOT_PATH . '/modules/xtransam/admin/menu.php';
         foreach ($adminObject as $key => $value) {
             $tblColors[$key]           = '';
@@ -177,7 +177,7 @@ if (!function_exists('makeWritable')) {
 if (!function_exists('xtransam_obj2array')) {
     function xtransam_obj2array($objects)
     {
-        $ret = array();
+        $ret = [];
         foreach ((array)$objects as $key => $value) {
             if (is_a($value, 'stdClass')) {
                 $ret[$key] = xtransam_obj2array($value);

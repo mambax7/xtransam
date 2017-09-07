@@ -18,7 +18,7 @@
  * @author       Simon Roberts (simon@chronolabs.org.au)
  */
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 require_once $GLOBALS['xoops']->path('modules/xtransam/include/functions.php');
 require_once $GLOBALS['xoops']->path('modules/xtransam/include/provider.php');
@@ -53,14 +53,14 @@ class XtransamBingProvider extends XtransamProviderHandler
 
     public function send_curl($url, $text, $from, $to, $referer = null)
     {
-        $response = xtransam_callAPI($url, array(
+        $response = xtransam_callAPI($url, [
             'AppId'                      => $GLOBALS['xoopsModuleConfig']['bing_api_key'],
             'Query'                      => $text,
             'Sources'                    => 'Translation',
             'Version'                    => '2.2',
             'Translation.SourceLanguage' => $from,
             'Translation.TargetLanguage' => $to
-        ), 'GET');
+        ], 'GET');
 
         return $response;
     }

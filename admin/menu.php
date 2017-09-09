@@ -46,25 +46,34 @@ $pathIcon32    = Admin::menuIconPath('');
 $pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
 xoops_loadLanguage('modinfo', $moduleDirName);
-$adminmenu = [];
 
-$i                      = 1;
-$adminmenu[$i]['title'] = _MI_XTRANSAM_ADMENU1;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XTRANSAM_ADMENU2;
-$adminmenu[$i]['link']  = 'admin/index.php?op=wizard';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/wizard.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XTRANSAM_ADMENU3;
-$adminmenu[$i]['link']  = 'admin/index.php?op=bbs';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/translations.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XTRANSAM_ADMENU4;
-$adminmenu[$i]['link']  = 'admin/index.php?op=languages';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/languages.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XTRANSAM_ADMENU5;
-$adminmenu[$i]['link']  = 'admin/about.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
+$adminmenu[] = [
+    'title' => _MI_XTRANSAM_ADMENU1,
+    'link'  => 'admin/index.php',
+    'icon'  => $pathIcon32 . '/home.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_XTRANSAM_ADMENU2,
+    'link'  => 'admin/index.php?op=wizard',
+    'icon'  => $pathIcon32 . '/wizard.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_XTRANSAM_ADMENU3,
+    'link'  => 'admin/index.php?op=bbs',
+    'icon'  => $pathIcon32 . '/translations.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_XTRANSAM_ADMENU4,
+    'link'  => 'admin/index.php?op=languages',
+    'icon'  => $pathIcon32 . '/languages.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_XTRANSAM_ADMENU5,
+    'link'  => 'admin/about.php',
+    'icon'  => $pathIcon32 . '/about.png',
+];
+

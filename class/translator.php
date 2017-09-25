@@ -77,10 +77,10 @@ class XtransamTranslatorHandler extends XoopsPersistableObjectHandler
         if ($charset_output == $charset_input) {
             // Encoding is already good
             return $text;
-        } elseif ($charset_output == 'UTF-8' && $charset_input == 'ISO-8859-1') {
+        } elseif ('UTF-8' == $charset_output && 'ISO-8859-1' == $charset_input) {
             // ISO-8859-1 -> UTF8
             return utf8_encode($text);
-        } elseif ($charset_output == 'ISO-8859-1' && $charset_input == 'UTF-8') {
+        } elseif ('ISO-8859-1' == $charset_output && 'UTF-8' == $charset_input) {
             // UTF8 -> ISO-8859-1
             return utf8_decode($text);
         } else {

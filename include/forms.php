@@ -73,7 +73,7 @@ function managerForm_display($ioid, $fileid)
     $io    = $ioHandler->get($ioid);
     $files = $filesHandler->getObjects(new Criteria('ioid', $ioid));
 
-    if ($fileid == 0) {
+    if (0 == $fileid) {
         $fileid = $files[0]->getVar('id');
     }
 
@@ -123,9 +123,9 @@ function translationForm_display($display = false)
         $ele_tray[$io->getVar('id')]->addElement(new XoopsFormLabel(_AM_XTRANSAM_LABELTRANSLATEFROM, $lang_from->getVar('name')));
         $ele_tray[$io->getVar('id')]->addElement(new XoopsFormLabel(_AM_XTRANSAM_LABELTRANSLATETO, $lang_to->getVar('name')));
         $ele_tray[$io->getVar('id')]->addElement(new XoopsFormLabel('&nbsp;|&nbsp;', '<a href="index.php?op=deletebuffer&id=' . $io->getVar('id') . '">' . _DELETE . '</a>'));
-        if ($display === false) {
+        if (false === $display) {
             $criteria = new CriteriaCompo(new Criteria('ioid', $io->getVar('id')));
-            if ($filesHandler->getCount($criteria) == 0) {
+            if (0 == $filesHandler->getCount($criteria)) {
                 $ele_tray[$io->getVar('id')]->addElement(new XoopsFormLabel('&nbsp;|&nbsp;', '<a href="index.php?op=analysis&id=' . $io->getVar('id') . '">' . _AM_XTRANSAM_ANALYSIS . '</a>'));
             } else {
                 $criteria->add(new Criteria('imported', '0'));

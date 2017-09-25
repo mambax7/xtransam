@@ -44,7 +44,7 @@ class XtransamMymemoryProvider extends XtransamProviderHandler
     public function translate($fromcode, $tocode, $value)
     {
         $response = xtransam_obj2array(parent::json_decode($this->send_curl($this->url, $value, $fromcode, $tocode, XOOPS_URL)));
-        if ($response['responseStatus'] == 200) {
+        if (200 == $response['responseStatus']) {
             return parent::_unescapeUTF8EscapeSeq(parent::clean($response['responseData']['translatedText']));
         } else {
             return false;

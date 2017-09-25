@@ -107,10 +107,10 @@ class XtransamFilesHandler extends XoopsPersistableObjectHandler
                     $def = [];
                     foreach ($matches as $match) {
                         foreach ($match as $result) {
-                            if (!empty($result) && substr($result, 0, 6) !== 'define') {
+                            if (!empty($result) && 'define' !== substr($result, 0, 6)) {
                                 foreach ($this->seperator as $sep) {
                                     if (strpos($result, $sep) > 0) {
-                                        if (count(explode($sep, $result)) == 2) {
+                                        if (2 == count(explode($sep, $result))) {
                                             $result = explode($sep, $result);
                                         }
                                     }
@@ -118,7 +118,7 @@ class XtransamFilesHandler extends XoopsPersistableObjectHandler
 
                                 $def[0] = substr(trim($result[0]), 1);
                                 $def[1] = substr(trim($result[1]), 0, strlen(trim($result[1])) - 1);
-                            } elseif (substr($result, 0, 6) === 'define') {
+                            } elseif ('define' === substr($result, 0, 6)) {
                                 $def[3] = $result;
                             }
                         }
@@ -184,7 +184,7 @@ class XtransamFilesHandler extends XoopsPersistableObjectHandler
         if ($handle = opendir($directory)) {
             while (false !== ($file = readdir($handle))) {
                 $filecomp = explode('.', $file);
-                if ($file !== '.' && $file !== '..') {
+                if ('.' !== $file && '..' !== $file) {
                     if (is_dir($directory . '/' . $file)) {
                         if ($recursive) {
                             $array_items = array_merge($array_items, $this->dirToArray($directory . '/' . $file, $recursive));

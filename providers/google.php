@@ -54,7 +54,7 @@ class XtransamGoogleProvider extends XtransamProviderHandler
             if ($chars = XoopsCache::read('xtransam_google_chars')) {
                 if ($chars['totals']['seconds'] + strlen($value) > $GLOBALS['xoopsModuleConfig']['google_chars_seconds']) {
                     $go = false;
-                    while ($go !== true) {
+                    while (true !== $go) {
                         foreach ($chars['seconds'] as $microseconds => $countb) {
                             if (microtime(true) - $start > $GLOBALS['xoopsModuleConfig']['wait_in_case']) {
                                 redirect_header(XOOPS_URL . '/modules/xtransam/admin/index.php', 10, sprintf(_GL_XTRANSAM_WAIT_TIMED_OUT, $GLOBALS['xoopsModuleConfig']['wait_in_case']));
@@ -80,7 +80,7 @@ class XtransamGoogleProvider extends XtransamProviderHandler
                 }
                 $go = false;
                 if ($chars['totals']['day'] + strlen($value) > $GLOBALS['xoopsModuleConfig']['google_chars_day']) {
-                    while ($go !== true) {
+                    while (true !== $go) {
                         foreach ($chars['day'] as $microseconds => $countb) {
                             if (microtime(true) - $start > $GLOBALS['xoopsModuleConfig']['wait_in_case']) {
                                 redirect_header(XOOPS_URL . '/modules/xtransam/admin/index.php', 10, sprintf(_GL_XTRANSAM_WAIT_TIMED_OUT, $GLOBALS['xoopsModuleConfig']['wait_in_case']));

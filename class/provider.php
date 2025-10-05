@@ -79,7 +79,13 @@ class XtransamProviderHandler extends XoopsPersistableObjectHandler
 
     public function _unescapeUTF8EscapeSeq($str)
     {
-        return preg_replace_callback("/\\\u([0-9a-f]{4})/i", create_function('$matches', 'return html_entity_decode(\'&#x\'.$matches[1].\';\', ENT_NOQUOTES, \'UTF-8\');'), $str);
+        return preg_replace_callback(
+            "/\\\u([0-9a-f]{4})/i",
+            static function ($matches) {
+                return html_entity_decode('&#x' . $matches[1] . ';', ENT_NOQUOTES, 'UTF-8');
+            },
+            $str
+        );
     }
 
     public function clean($var)

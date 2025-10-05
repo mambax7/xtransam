@@ -35,6 +35,7 @@ class XtransamIobase extends XoopsObject
         $this->initVar('path', XOBJ_DTYPE_TXTBOX, null, true, 255);
         $this->initVar('languagefrom', XOBJ_DTYPE_INT, null);
         $this->initVar('languageto', XOBJ_DTYPE_INT, null);
+        $this->initVar('total', XOBJ_DTYPE_INT, null);
         $this->initVar('done', XOBJ_DTYPE_INT, null);
     }
 }
@@ -63,35 +64,46 @@ class XtransamIobaseHandler extends XoopsPersistableObjectHandler
             return false;
         }
 
+        $point        = $this->db->quoteString($io->getVar('point', 'n'));
+        $path         = $this->db->quoteString($io->getVar('path', 'n'));
+        $languageFrom = (int)$io->getVar('languagefrom', 'n');
+        $languageTo   = (int)$io->getVar('languageto', 'n');
+        $total        = (int)$io->getVar('total', 'n');
+        $done         = (int)$io->getVar('done', 'n');
+
         if (!$this->exists($io)) {
-            $sql = 'INSERT INTO ' . $this->db->prefix('xtransam_iobase') . " (`point`, `path`, `languagefrom`, `languageto`) VALUES ('" . $io->getVar('point') . "', '" . $io->getVar('path') . "', '" . $io->getVar('languagefrom') . "', '" . $io->getVar('languageto') . "')";
+            $sql = sprintf(
+                'INSERT INTO %s (`point`, `path`, `languagefrom`, `languageto`, `total`, `done`) VALUES (%s, %s, %d, %d, %d, %d)',
+                $this->db->prefix('xtransam_iobase'),
+                $point,
+                $path,
+                $languageFrom,
+                $languageTo,
+                $total,
+                $done
+            );
         } else {
-            $sql = 'UPDATE '
-                   . $this->db->prefix('xtransam_iobase')
-                   . " SET `point` = '"
-                   . $io->getVar('point')
-                   . "', `path` = '"
-                   . $io->getVar('path')
-                   . "', `languagefrom` = '"
-                   . $io->getVar('languagefrom')
-                   . "', `languageto` = '"
-                   . $io->getVar('languageto')
-                   . "', `total` = '"
-                   . $io->getVar('total')
-                   . "', `done` = '"
-                   . $io->getVar('done')
-                   . "' where `id` = "
-                   . $io->getVar('id');
+            $sql = sprintf(
+                'UPDATE %s SET `point` = %s, `path` = %s, `languagefrom` = %d, `languageto` = %d, `total` = %d, `done` = %d WHERE `id` = %d',
+                $this->db->prefix('xtransam_iobase'),
+                $point,
+                $path,
+                $languageFrom,
+                $languageTo,
+                $total,
+                $done,
+                (int)$io->getVar('id', 'n')
+            );
         }
 
-        return $this->db->queryF($sql);
+        return (bool)$this->db->queryF($sql);
     }
 
     public function &getObjects($criteria = null, $fields = null, $asObject = true, $id_as_key = true)
     {
         if (is_array($fields) && count($fields) > 0) {
-            if (!in_array($this->handler->keyName, $fields)) {
-                $fields[] = $this->handler->keyName;
+            if (!in_array($this->keyName, $fields)) {
+                $fields[] = $this->keyName;
             }
             $select = '`' . implode('`, `', $fields) . '`';
         } else {
@@ -108,9 +120,6 @@ class XtransamIobaseHandler extends XoopsPersistableObjectHandler
             }
             $limit = $criteria->getLimit();
             $start = $criteria->getStart();
-        }
-        if (empty($orderSet)) {
-            // $sql .= " ORDER BY `{$this->handler->keyName}` DESC";
         }
         $result = $this->db->query($sql, $limit, $start);
         $ret    = [];

@@ -136,8 +136,12 @@ if (!function_exists('xtransam_hex2bin')) {
             return null;
         }
         $r = '';
-        for ($a = 0; $a < strlen($hex); $a += 2) {
-            $r .= chr(hexdec($hex{$a} . $hex{$a + 1}));
+        $length = strlen($hex);
+        if (0 !== $length % 2) {
+            return null;
+        }
+        for ($a = 0; $a < $length; $a += 2) {
+            $r .= chr(hexdec($hex[$a] . $hex[$a + 1]));
         }
 
         return $r;
@@ -209,10 +213,16 @@ if (!function_exists('xtransam_callAPI')) {
             }
             curl_setopt($ch, CURLOPT_URL, $url);
             //curl_setopt($ch, CURLOPT_HEADER, 1);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            $verifySsl = true;
+            if (defined('XTRANSAM_DISABLE_SSL_VERIFY') && true === XTRANSAM_DISABLE_SSL_VERIFY) {
+                $verifySsl = false;
+            }
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $verifySsl ? 1 : 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $verifySsl ? 2 : 0);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_USERAGENT, ucfirst($GLOBALS['xoopsModule']->getVar('dirname')) . ' ' . $GLOBALS['xoopsModule']->getVar('version') / 100 . ' (PHP Version ' . PHP_VERSION . ')');
+            $moduleName    = isset($GLOBALS['xoopsModule']) ? ucfirst($GLOBALS['xoopsModule']->getVar('dirname')) : 'xtransam';
+            $moduleVersion = isset($GLOBALS['xoopsModule']) ? ((int)$GLOBALS['xoopsModule']->getVar('version') / 100) : '1.0';
+            curl_setopt($ch, CURLOPT_USERAGENT, $moduleName . ' ' . $moduleVersion . ' (PHP Version ' . PHP_VERSION . ')');
             $data = curl_exec($ch);
             curl_close($ch);
 
